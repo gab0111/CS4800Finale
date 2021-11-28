@@ -1,348 +1,99 @@
 package application;
 	
-import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-
 
 public class Main extends Application {
-	double num;
-	double result;
-    String operation;
-    @Override
-	public void start(Stage primaryStage) throws Exception {
-    	
-    	GridPane pain = new GridPane();
 
-		 TextField enter = new TextField();
-		 enter.setMinSize(35*5+20, 40);
-		 enter.setAlignment(Pos.BASELINE_RIGHT);
-		 pain.add(enter, 0, 0, 5, 2);
-		 
-		 Button btn0 = new Button("0");
-		 btn0.setMinSize(35, 35);
-		 
-		 Button btn1 = new Button("1");
-		 btn1.setMinSize(35, 35);
-		 Button btn2 = new Button("2");
-		 btn2.setMinSize(35, 35);
-		 Button btn3 = new Button("3");
-		 btn3.setMinSize(35, 35);
-		 Button btn4 = new Button("4");
-        btn4.setMinSize(35, 35);
-	     Button btn5 = new Button("5");
-		 btn5.setMinSize(35, 35);
-	     Button btn6 = new Button("6");
-	     btn6.setMinSize(35, 35);
-  	     Button btn7 = new Button("7");
-		 btn7.setMinSize(35, 35);
-		 Button btn8 = new Button("8");
-		 btn8.setMinSize(35, 35);
-		 Button btn9 = new Button("9");
-		 btn9.setMinSize(35, 35);
-		   
-		 Button btnPlus = new Button("+");
-		 btnPlus.setMinSize(35, 35);
-		 Button btnMinus = new Button("-");
-		 btnMinus.setMinSize(35, 35);
-		 Button btnMultiply = new Button("*");
-		 btnMultiply.setMinSize(35, 35);
-		 Button btnDivide = new Button("/");
-		 btnDivide.setMinSize(35, 35);
-		 Button btnEquals = new Button("=");
-		 btnEquals.setMaxHeight(Double.MAX_VALUE);
-		 btnEquals.setMaxWidth(Double.MAX_VALUE);
-		    
-		 Button btnDot = new Button(".");
-		 btnDot.setMinSize(35, 35);
-		 Button btnC = new Button("C");
-		 btnC.setMinSize(35, 35);
-		 Button btnPlusOrMinus = new Button("+/-");
-		 btnPlusOrMinus.setMinSize(35, 35);
-		 Button btnPercentage= new Button("%");
-		 btnPercentage.setMinSize(35, 35);
-		 
-		 pain.add(btn7,0,3);
-		 pain.add(btn8,1,3);
-		 pain.add(btn9,2,3);
-	     pain.add(btnDivide,3,3);
-		 pain.add(btnPercentage,4,3);
-
-		 pain.add(btn4,0,4);
-		 pain.add(btn5,1,4);
-		 pain.add(btn6,2,4);
-		 pain.add(btnMultiply,3,4);
-		 pain.add(btnC,4,4);
-		    
-		 pain.add(btn1,0,5);
-		 pain.add(btn2,1,5);
-		 pain.add(btn3,2,5);
-		 pain.add(btnMinus,3,5);
-		 pain.add(btnEquals,4,5,1,2);
-
-
-		 pain.add(btnPlusOrMinus,0,6);
-		 pain.add(btn0,1,6);
-		 pain.add(btnDot,2,6);
-		 pain.add(btnPlus,3,6);
-		 
-		
-		 btn0.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					String number = enter.getText() + btn0.getText();
-					enter.setText(number);
-				}
-				 
-			 });
-		 
-		 btn1.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					String number = enter.getText() + btn1.getText();
-					enter.setText(number);
-				}
-				 
-			 });
-		 
-		 btn2.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					String number = enter.getText() + btn2.getText();
-					enter.setText(number);
-				}
-				 
-			 });
-		 
-		 btn3.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					String number = enter.getText() + btn3.getText();
-					enter.setText(number);
-				}
-				 
-			 });
-		 
-		 btn4.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					String number = enter.getText() + btn4.getText();
-					enter.setText(number);
-				}
-				 
-			 });
-		 
-		 btn5.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					String number = enter.getText() + btn5.getText();
-					enter.setText(number);
-				}
-				 
-			 });
-		 
-		 btn6.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					String number = enter.getText() + btn6.getText();
-					enter.setText(number);
-				}
-				 
-			 });
-		 
-		 btn7.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				String number = enter.getText() + btn7.getText();
-				enter.setText(number);
-			}
-			 
-		 });
-		 
-		 btn8.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					String number = enter.getText() + btn8.getText();
-					enter.setText(number);
-				}
-				 
-			 });
-		 
-		 btn9.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					String number = enter.getText() + btn9.getText();
-					enter.setText(number);
-				}
-				 
-			 });
-		 
-		 btnDot.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					String number = enter.getText() + btnDot.getText();
-					enter.setText(number);
-				}
-				 
-			 });
-		 
-		 
-		 btnC.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					
-					enter.setText(null);
-					enter.setText("");
-				}
-				 
-			 });
-		 
-		 btnPlus.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					num = Double.parseDouble(enter.getText());
-					enter.setText("");
-					operation = "+";
-				}
-				 
-			 });
-		 
-		 btnMinus.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					num = Double.parseDouble(enter.getText());
-					enter.setText("");
-					operation = "-";
-				}
-				 
-			 });
-		 
-		 btnMultiply.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					num = Double.parseDouble(enter.getText());
-					enter.setText("");
-					operation = "*";
-				}
-				 
-			 });
-		 
-		 btnDivide.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					num = Double.parseDouble(enter.getText());
-					enter.setText("");
-					operation = "/";
-				}
-				 
-			 });
-		 
-		 btnPercentage.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					num = Double.parseDouble(enter.getText());
-					result = num/100;
-					enter.setText(String.valueOf(result));
-					
-				}
-				 
-			 });
-		 
-		 btnPlusOrMinus.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					double opposite = Double.parseDouble(String.valueOf(enter.getText()));
-					opposite = -1 * opposite;
-					enter.setText(String.valueOf(opposite));
-				}
-				 
-			 });
-		 
-		 
-		 btnEquals.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					double num2 = Double.parseDouble(enter.getText());
-					if (operation == "+") {
-						result = num + num2;
-						enter.setText(String.valueOf(result));
-					}
-					else if (operation == "-") {
-						result = num - num2;
-						enter.setText(String.valueOf(result));
-					}
-					else if (operation == "*") {
-						result = num * num2;
-						enter.setText(String.valueOf(result));
-					}
-					else if (operation == "/") {  
-						if (num2==0)
-							enter.setText("error");
-						else {
-							result = num / num2;
-							enter.setText(String.valueOf(result));
-						}	
-					}
-					
-					else {
-						enter.setText("error");
-					}
-					
-					
-				}
-				 
-			 });
-		 
-		 
-    
-		 pain.setVgap(5);
-		 pain.setHgap(5);
-		 pain.setPadding(new Insets(5,5,5,5));
-		 primaryStage.setTitle("Calculator");
-		 primaryStage.setScene(new Scene(pain));
-		 primaryStage.show();
-
-	}
-	
 	public static void main(String[] args) {
-		Application.launch(args);
-	}
-}
+        launch(args);
+    }
 
+    ObservableList<ChatEntry> messages;
+
+    @Override
+    public void start(Stage primaryStage) {
+        messages = FXCollections.observableArrayList();
+        TextField textField = new TextField();
+        Button localButton = new Button("Local");
+        Button remoteButton = new Button("Remote");
+        ListView<ChatEntry> listView = new ListView<>();
+        listView.setCellFactory(list -> new ChatCell());
+        listView.setItems(messages);
+        localButton.setOnAction(evt -> messages.add(new ChatEntry(textField.getText(), MessageType.LOCAL)));
+        remoteButton.setOnAction(evt -> messages.add(new ChatEntry(textField.getText(), MessageType.REMOTE)));
+        Scene scene = new Scene(new VBox(10, listView, new HBox(remoteButton, textField, localButton)));
+        scene.getStylesheets().add("/css/samples.css");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    enum MessageType {
+        LOCAL, REMOTE
+    }
+
+
+    static class ChatCell extends ListCell<ChatEntry> {
+
+        HBox graphic = new HBox();
+        Text message = new Text();
+
+        public ChatCell() {
+            graphic.getChildren().add(message);
+            getStyleClass().add("custom-list-cell");
+        }
+
+        @Override
+        public void updateItem(ChatEntry item, boolean empty) {
+            super.updateItem(item, empty);
+            if (!empty && (item != null)) {
+                message.setText(item.textProperty().get());
+                graphic.setAlignment(item.typeProperty().get().equals(MessageType.REMOTE) ? Pos.CENTER_LEFT : Pos.CENTER_RIGHT);
+                setGraphic(graphic);
+            } else {
+                message.setText("");
+                setGraphic(null);
+            }
+        }
+    }
+
+
+    static class ChatEntry {
+        private final StringProperty text = new SimpleStringProperty("");
+        private final ObjectProperty<MessageType> type = new SimpleObjectProperty<>();
+
+        public ChatEntry(String text, MessageType type) {
+            this.text.set(text);
+            this.type.set(type);
+        }
+
+        public StringProperty textProperty() {
+            return text;
+        }
+
+        public ObjectProperty<MessageType> typeProperty() {
+            return type;
+        }
+    }
+}
