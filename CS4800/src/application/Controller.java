@@ -1,74 +1,122 @@
-
 package application;
 
-
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URL;
 import java.util.ResourceBundle;
-
-import javax.print.DocFlavor.URL;
-
-import application.MainController.ChatEntry;
-import javafx.application.Application;
+import javafx.event.ActionEvent;
+import application.Controller.ChatCell;
+import application.Controller.ChatEntry;
+import application.Controller.MessageType;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+public class Controller implements Initializable{
 
-public class MainController {
+	@FXML
+	private WebView webView;
+	@FXML
+	private TextField textField;
+	
+	private WebEngine engine;
+	private WebHistory history;
+	private String homePage;
+	private double webZoom;
 	@FXML
 	private Label lblStatus;
 	@FXML
 	private TextField txtUserName;
 	@FXML
 	private TextField txtPassword;
-	@FXML
-	private WebView webView;
-	@FXML
-	private TextField textField;
-	private WebEngine engine;
-	private String homePage;
-	private double webZoom;
-	
 	ObservableList<ChatEntry> messages;
 	
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		engine = webView.getEngine();
-		homePage = "www.google.com";
+		homePage = "www.cpp.edu/~gkhachatryan/index.html";
 		textField.setText(homePage);
 		webZoom = 1;
-	    loadPage();
+		loadPage();
 	}
+	
 	public void loadPage() {
+		
 		engine.load("http://"+textField.getText());
 		
+	}
+	
+	public void refreshPage() {
+		
+		engine.reload();
+	}
+	
+	public void zoomIn() {
+		
+		webZoom+=0.25;
+		webView.setZoom(webZoom);
+	}
+	
+	public void zoomOut() {
+		
+		webZoom-=0.25;
+		webView.setZoom(webZoom);
+	}
+	
+	public void displayHistory() {
+		
+		history = engine.getHistory();
+		ObservableList<WebHistory.Entry> entries = history.getEntries();
+		
+		for(WebHistory.Entry entry : entries) {
+			
+			//System.out.println(entry);
+			System.out.println(entry.getUrl()+" "+entry.getLastVisitedDate());
+		}
+	}
+	
+	public void back() {
+		
+		history = engine.getHistory();
+		ObservableList<WebHistory.Entry> entries = history.getEntries();
+		history.go(-1);
+		
+		textField.setText(entries.get(history.getCurrentIndex()).getUrl());
+	}
+	
+	public void forward() {
+		
+		history = engine.getHistory();
+		ObservableList<WebHistory.Entry> entries = history.getEntries();
+		history.go(1);
+		
+		textField.setText(entries.get(history.getCurrentIndex()).getUrl());
+	}
+	
+	public void executeJS() {
+		
+		engine.executeScript("window.location = \"https://www.youtube.com\";");
 	}
 	public void Login(ActionEvent event) throws Exception{
 		Stage primaryStage1 = new Stage();
@@ -153,5 +201,5 @@ public class MainController {
 
 	
 }
-}
 
+}
